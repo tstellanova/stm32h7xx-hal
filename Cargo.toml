@@ -36,6 +36,8 @@ features = ["const-fn"]
 [dev-dependencies]
 panic-itm = "~0.4.1"
 cortex-m-log = { version = "~0.6", features = ["itm"] }
+cortex-m-semihosting = "0.3.5"
+nb = {version = "0.1.2" }
 
 [features]
 default = ["unproven"]
