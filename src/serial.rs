@@ -60,6 +60,8 @@ pub enum Event {
     Txe,
     /// Idle line state detected
     Idle,
+    /// Error detected (EIE)
+    GenError,
 }
 
 pub mod config {
@@ -461,6 +463,9 @@ macro_rules! usart {
                         Event::Idle => {
                             self.usart.cr1.modify(|_, w| w.idleie().enabled())
                         },
+                        Event::GenError => {
+                            self.usart.cr3.modify(|_, w| w.eie().enabled())
+                        }
                     }
                 }
 
@@ -476,6 +481,9 @@ macro_rules! usart {
                         Event::Idle => {
                             self.usart.cr1.modify(|_, w| w.idleie().disabled())
                         },
+                        Event::GenError => {
+                            self.usart.cr3.modify(|_, w| w.eie().disabled())
+                        }
                     }
                 }
 
